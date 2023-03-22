@@ -1,8 +1,11 @@
 import * as vscode from 'vscode'
+import { MultiStepInput } from './multiStepInput';
 
 export interface IEditor {
   writeToConsole: (text: string) => void
+  writeNewFile: (text: string, ext: string) => Promise<void> 
   getUserInput: (prompt: string, placeHolder: string, errorText: string, password?: boolean) => Promise<string | undefined>
+  getUserTwoInput: (prompt: string[], title: string[]) => Promise<string[] | undefined>
   showErrorMessage: (message: string) => void
   getCurrentFileContents: () => string
   getCurrentFileExtension: () => string
@@ -26,6 +29,20 @@ export class Editor implements IEditor {
     this.outputChannel.show()
   }
 
+  extractCode(text: string): string {
+    const regex = /```([\s\S]*?)```/g;
+    const matches = regex.exec(text);
+    if (matches && matches.length > 1) {
+      return matches[1];
+    }
+    return '';
+  }
+
+  async writeNewFile(text: string, ext: string): Promise<void> {
+    let document = await vscode.workspace.openTextDocument({ language: ext, content: this.extractCode(text) });
+    await vscode.window.showTextDocument(document)
+  }
+
   async getUserInput (prompt: string, placeHolder: string, errorText: string, password: boolean = false): Promise<string | undefined> {
     return await vscode.window.showInputBox({
       prompt,
@@ -40,7 +57,27 @@ export class Editor implements IEditor {
       }
     })
   }
+  async getUserTwoInput(prompt: string[], title: string[]): Promise<string[] | undefined> {
+    let data: string[] = ['', '']
+    await MultiStepInput.run(async (input) => {
+      data[0] = await input.showInputBox({
+        title: title[0],
+        step: 1,
+        totalSteps: 2,
+        value: data[0],
+        prompt: prompt[0],
+      });
 
+      data[1] = await input.showInputBox({
+        title: title[1],
+        step: 2,
+        totalSteps: 2,
+        value: data[1],
+        prompt: prompt[1],
+      });
+    });
+    return data
+  }
   showErrorMessage (message: string): void {
     void vscode.window.showErrorMessage(message)
   }
