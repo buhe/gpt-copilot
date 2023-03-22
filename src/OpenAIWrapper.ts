@@ -25,7 +25,8 @@ export class OpenAIWrapper implements IOpenAIWrapper {
   async makeRequest (text: string, editor: IEditor): Promise<string | undefined> {
     const config = new Configuration({
       apiKey: await editor.getSecret('openai-api-key'),
-      organization: editor.getConfigValue('organization')
+      organization: editor.getConfigValue('organization'),
+      basePath: 'https://mk4qescbacueozfspg2o7lljha0lepsc.lambda-url.us-west-1.on.aws'
     })
     const openai = new OpenAIApi(config)
     const response = await openai.createCompletion({
