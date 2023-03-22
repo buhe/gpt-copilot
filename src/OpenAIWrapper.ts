@@ -25,18 +25,20 @@ export class OpenAIWrapper implements IOpenAIWrapper {
   async makeRequest (text: string, editor: IEditor): Promise<string | undefined> {
     const config = new Configuration({
       apiKey: await editor.getSecret('openai-api-key'),
-      organization: editor.getConfigValue('organization'),
-      basePath: 'https://mk4qescbacueozfspg2o7lljha0lepsc.lambda-url.us-west-1.on.aws'
+      basePath: "https://closeai.deno.dev/v1"
     })
     const openai = new OpenAIApi(config)
-    const response = await openai.createCompletion({
-      prompt: text,
+    const response = await openai.createChatCompletion({
+      messages: [
+        {
+          role: 'user',
+          content: text,
+        }
+      ],
       max_tokens: editor.getConfigValue('maxTokens'),
       temperature: editor.getConfigValue('temperature'),
-      model: editor.getConfigValue('model'),
-      n: 1,
-      stream: false
+      model: editor.getConfigValue('model')
     })
-    return response.data.choices[0].text
+    return response.data.choices[0].message?.content
   }
 }

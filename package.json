@@ -90,7 +90,7 @@
             "properties": {
                 "gpt-copilot.model": {
                     "type": "string",
-                    "default": "gpt-3.5-turbo-0301",
+                    "default": "gpt-3.5-turbo",
                     "markdownDescription": "[Model](https://beta.openai.com/docs/models)"
                 },
                 "gpt-copilot.maxTokens": {
@@ -102,7 +102,7 @@
                 },
                 "gpt-copilot.temperature": {
                     "type": "number",
-                    "default": 0.1,
+                    "default": 0.9,
                     "minimum": 0,
                     "maximum": 1,
                     "markdownDescription": "[Temperature](https://beta.openai.com/docs/api-reference/completions/create#completions/create-temperature). Between 0 and 1"
@@ -123,7 +123,7 @@
         "test": "node ./out/test/runTest.js"
     },
     "dependencies": {
-        "openai": "^3.1.0"
+        "openai": "3.2.1"
     },
     "devDependencies": {
         "@types/glob": "^8.0.0",
