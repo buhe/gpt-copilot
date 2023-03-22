@@ -2,7 +2,7 @@
     "name": "gpt-copilot",
     "displayName": "GPT CoPilot",
     "description": "GPT-3 powered code explanation and documentation assistant",
-    "publisher": "parallel-universe",
+    "publisher": "parallel-universe,buhe",
     "pricing": "Free",
     "categories": [
         "Machine Learning",
@@ -10,15 +10,14 @@
         "Debuggers"
     ],
     "keywords": [
-        "GPT-3",
-        "GPT3",
+        "GPT-3.5",
         "GPT",
         "AI",
         "OpenAI",
         "ML",
         "Machine Learning"
     ],
-    "version": "0.0.4",
+    "version": "0.0.5",
     "private": true,
     "engines": {
         "vscode": "^1.74.0"
