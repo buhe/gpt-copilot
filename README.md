@@ -19,6 +19,7 @@ More updates to follow to make this useful for more seasoned developers looking 
 - Ask GPT about highlighted code or an entire file
 - Free text input to ask anything you like
 - Use GPT generate code based on prompt words
+- Use GPT insert function on current file and current location based on prompt words
 - Ouputs response to the output window in vscode
 - Configurable GPT settings
 - Use inline proxy pass GWF
