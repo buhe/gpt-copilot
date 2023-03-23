@@ -17,7 +17,7 @@
         "ML",
         "Machine Learning"
     ],
-    "version": "0.0.6",
+    "version": "0.0.7",
     "private": true,
     "engines": {
         "vscode": "^1.74.0"
@@ -54,6 +54,10 @@
             {
                 "command": "gpt-copilot.write_new_file",
                 "title": "GPT - Write New File"
+            },
+            {
+                "command": "gpt-copilot.insert_function",
+                "title": "GPT - Insert function"
             },
             {
                 "command": "gpt-copilot.setup",

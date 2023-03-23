@@ -13,6 +13,8 @@ export interface IEditor {
   getSecret: (key: string) => Promise<string | undefined>
   setSecret: (key: string, value: string) => void
   getConfigValue: (key: string) => any
+  enterText: (text: string) => void
+  getCurrentLanguage: () => string
 }
 
 export class Editor implements IEditor {
@@ -41,6 +43,25 @@ export class Editor implements IEditor {
   async writeNewFile(text: string, ext: string): Promise<void> {
     let document = await vscode.workspace.openTextDocument({ language: ext, content: this.extractCode(text) });
     await vscode.window.showTextDocument(document)
+  }
+
+  enterText(text: string) {
+    const editor = vscode.window.activeTextEditor;
+    if (editor) {
+      editor.edit(editBuilder => {
+        editBuilder.insert(editor.selection.active, text);
+      });
+    }
+  }
+
+  getCurrentLanguage(): string {
+    const editor = vscode.window.activeTextEditor;
+    if (editor) {
+      const document = editor.document;
+      const languageId = document.languageId;
+      return languageId;
+    }
+    return "";
   }
 
   async getUserInput (prompt: string, placeHolder: string, errorText: string, password: boolean = false): Promise<string | undefined> {

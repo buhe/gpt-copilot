@@ -6,6 +6,7 @@ import { explainFileCommand } from './commands/explainFile'
 import { askAboutFileCommand } from './commands/askAboutFile'
 import { askAnythingCommand } from './commands/askAnything'
 import { writeNewFileCommand } from './commands/writeNewFile'
+import { insertFunctionCommand } from './commands/insertFunction'
 import { Editor } from './Editor'
 import { OpenAIWrapper } from './OpenAIWrapper'
 
@@ -42,6 +43,10 @@ export async function activate (context: vscode.ExtensionContext): Promise<void>
     await writeNewFileCommand(editor, OpenAiAPI)
   })
 
+  const insertFunction = vscode.commands.registerCommand('gpt-copilot.insert_function', async () => {
+    await insertFunctionCommand(editor, OpenAiAPI)
+  })
+
   subscriptions.push(setup)
   subscriptions.push(explainSelection)
   subscriptions.push(askAboutSelection)
@@ -49,4 +54,5 @@ export async function activate (context: vscode.ExtensionContext): Promise<void>
   subscriptions.push(askAboutFile)
   subscriptions.push(askAnything)
   subscriptions.push(writeNewFile)
+  subscriptions.push(insertFunction)
 }
