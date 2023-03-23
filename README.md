@@ -18,14 +18,16 @@ More updates to follow to make this useful for more seasoned developers looking 
 - Use GPT to explain highlighted code or an entire file
 - Ask GPT about highlighted code or an entire file
 - Free text input to ask anything you like
+- Use GPT generate code based on prompt words
 - Ouputs response to the output window in vscode
 - Configurable GPT settings
+- Use inline proxy pass GWF
 
 ## Configuration
 
 You can customize the behavior of the GPT extension by modifying the following settings in Visual Studio Code's settings pane (Ctrl+Comma):
 
-- `gpt-copilot.model`: The name of the GPT-3 model to use for generating the response.
+- `gpt-copilot.model`: The name of the GPT-3.5 model to use for generating the response.
 - `gpt-copilot.maxTokens`: The maximum number of tokens to use for the response.
 - `gpt-copilot.temperature`: A value between 0 and 1 that determines the randomness of the response. A higher temperature results in a more varied response, while a lower temperature results in a more deterministic response.
 
