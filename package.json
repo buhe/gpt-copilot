@@ -1,7 +1,7 @@
 {
     "name": "gpt-copilot",
     "displayName": "GPT CoPilot",
-    "description": "GPT-3 powered code explanation and documentation assistant",
+    "description": "GPT-3.5 powered code explanation and documentation assistant",
     "publisher": "parallel-universe,buhe",
     "pricing": "Free",
     "categories": [
